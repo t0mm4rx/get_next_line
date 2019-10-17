@@ -6,7 +6,7 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:59:08 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/17 12:53:07 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/17 21:30:45 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,22 @@ char	*strappend(char *dest, char *append, unsigned int append_size)
 	i = 0;
 	while (i < append_size)
 		new[j++] = append[i++];
+	new[j] = '\0';
 	free(dest);
 	return (new);
+}
+
+char	*cut_first_chars(char *src, unsigned int i)
+{
+	char	*res;
+	int	j;
+
+	res = ft_calloc(ft_strlen(src) - i + 1, sizeof(char));
+	if (!res)
+		return (NULL);
+	j = 0;
+	while (src[i])
+		res[j++] = src[i++];
+	free(src);
+	return (res);
 }

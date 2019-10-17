@@ -6,7 +6,7 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:38:48 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/17 12:50:42 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/17 21:21:11 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,6 @@ void	*ft_calloc(unsigned int nmemb, unsigned int size);
 int	count_bl(char *str);
 int	ft_strlen(char *str);
 char	*strappend(char *dest, char *append, unsigned int append_size);
+char	*get_first_line(char **buffer);
+char	*cut_first_chars(char *src, unsigned int i);
 #endif

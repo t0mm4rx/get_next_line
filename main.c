@@ -6,7 +6,7 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:36:41 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/17 12:02:37 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/17 23:25:45 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 
 int main()
 {
-	int i = 0;
-	char *line = NULL;
+	printf("!%d!\n", BUFFER_SIZE);
+	//char *line = NULL;
 	int fd = open("bible.txt", O_RDONLY);
-	while (i++ < 5)
+	/*while (get_next_line(fd, &line))
 	{
-		get_next_line(fd, &line);
-		printf("%s\n", line);
-	}
+		printf("%s\n", i, line);
+	}*/
 	close(fd);
 }
