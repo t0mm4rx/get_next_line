@@ -6,32 +6,34 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:59:26 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/17 23:25:34 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/18 10:58:07 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-//#define BUFFER_SIZE 16668
 
 int	get_next_line(int fd, char **line)
 {
 	char		buffer[BUFFER_SIZE];
 	static char	*res;
+	int		bytes_read;
 
 	if (!res)
 		res = ft_calloc(1, sizeof(char));
-	if (!res)
+	if (!res || fd == -1)
 		return (-1);
-	while (count_bl(res) <= 0)
-	{
-		read(fd, buffer, BUFFER_SIZE);
+	while (count_bl(res) <= 0 && (bytes_read = read(fd, buffer, BUFFER_SIZE)))
 		res = strappend(res, buffer, BUFFER_SIZE);
+	if (!bytes_read)
+	{
+		*line = res;
+		return (0);
 	}
-	*line = get_first_line(&res);
+	get_first_line(&res, line);
 	return (1);
 }
 
-char	*get_first_line(char **buffer)
+char	*get_first_line(char **buffer, char **line)
 {
 	char	*res;
 	int 	i;
@@ -49,5 +51,6 @@ char	*get_first_line(char **buffer)
 		i++;
 	}
 	*buffer = cut_first_chars(*buffer, i + 1);
+	*line = res;
 	return (res);
 }
