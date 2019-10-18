@@ -6,7 +6,7 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:59:08 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/18 11:58:58 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/19 01:09:50 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_calloc(unsigned int nmemb, unsigned int size)
 {
-	void		*res;
+	void			*res;
 	unsigned int	i;
 
 	i = 0;
@@ -31,7 +31,7 @@ void	*ft_calloc(unsigned int nmemb, unsigned int size)
 	return (res);
 }
 
-int	count_bl(char *str)
+int		count_bl(char *str)
 {
 	int i;
 	int res;
@@ -43,7 +43,7 @@ int	count_bl(char *str)
 	return (res);
 }
 
-int	ft_strlen(char *str)
+int		ft_strlen(char *str)
 {
 	int i;
 
@@ -55,7 +55,7 @@ int	ft_strlen(char *str)
 
 char	*strappend(char *dest, char *append, unsigned int append_size)
 {
-	char		*new;
+	char			*new;
 	unsigned int	i;
 	unsigned int	j;
 
@@ -76,7 +76,7 @@ char	*strappend(char *dest, char *append, unsigned int append_size)
 char	*cut_first_chars(char *src, unsigned int i)
 {
 	char	*res;
-	int	j;
+	int		j;
 
 	res = ft_calloc(ft_strlen(src) - i + 1, sizeof(char));
 	if (!res)
