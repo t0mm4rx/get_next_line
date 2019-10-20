@@ -11,18 +11,22 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int main()
 {
 	printf("BUFFER_SIZE=%d\n", BUFFER_SIZE);
-	char *line = NULL;
-	int fd = open("8-five", O_RDONLY);
-	int status;
-	while ((status = get_next_line(0, &line)) == 1)
+	char *line1 = NULL;
+	char *line2 = NULL;
+	int fd = open("test", O_RDONLY);
+	int fd2 = open("test2", O_RDONLY);
+	int i = 0;
+	while (i++ < 3)
 	{
-		printf("%s\n", line);
-		free(line);
+		get_next_line(fd, &line1);
+		get_next_line(fd2, &line2);
+		printf("%s:%s\n", line1, line2);
 	}
 	close(fd);
+	close(fd2);
 }
