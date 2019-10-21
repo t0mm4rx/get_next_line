@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 11:59:08 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/19 01:09:50 by tmarx            ###   ########.fr       */
+/*   Created: 2019/10/21 13:45:14 by tmarx             #+#    #+#             */
+/*   Updated: 2019/10/21 13:45:20 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,24 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-char	*strappend(char *dest, char *append, unsigned int append_size)
+void	strappend(char **dest, char *append, unsigned int append_size)
 {
 	char			*new;
 	unsigned int	i;
 	unsigned int	j;
 
-	if (!(new = ft_calloc(ft_strlen(dest) + append_size + 1, sizeof(char))))
-		return (NULL);
+	if (!(new = ft_calloc(ft_strlen(*dest) + append_size + 1, sizeof(char))))
+		return ;
 	i = 0;
 	j = 0;
-	while (dest[i])
-		new[j++] = dest[i++];
+	while ((*dest)[i])
+		new[j++] = (*dest)[i++];
 	i = 0;
 	while (i < append_size)
 		new[j++] = append[i++];
 	new[j] = '\0';
-	free(dest);
-	return (new);
+	free(*dest);
+	*dest = new;
 }
 
 char	*cut_first_chars(char *src, unsigned int i)
@@ -79,7 +79,7 @@ char	*cut_first_chars(char *src, unsigned int i)
 	int		j;
 
 	res = ft_calloc(ft_strlen(src) - i + 1, sizeof(char));
-	if (!res)
+	if (!res || !src)
 		return (NULL);
 	j = 0;
 	while (src[i])
