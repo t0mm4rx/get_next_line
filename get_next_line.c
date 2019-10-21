@@ -6,7 +6,7 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 13:44:55 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/21 15:37:42 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/21 19:29:58 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		get_next_line(int fd, char **line)
 {
 	char			buffer[BUFFER_SIZE];
-	static t_file	*res_list;
+	static char		*res[MAX_OPENED];
 	int				bytes_read;
 
 	if (fd == -1)
@@ -24,9 +24,9 @@ int		get_next_line(int fd, char **line)
 		return (-1);
 	}
 	bytes_read = 1;
-	while (count_bl(*fd_to_res(fd, &res_list)) <= 0 &&
+	while (count_bl(res[fd]) <= 0 &&
 	(bytes_read = read(fd, buffer, BUFFER_SIZE)) && bytes_read > 0)
-		strappend(fd_to_res(fd, &res_list), buffer, bytes_read);
+		strappend(&(res[fd]), buffer, bytes_read);
 	if (bytes_read < 0)
 	{
 		*line = NULL;
@@ -34,10 +34,10 @@ int		get_next_line(int fd, char **line)
 	}
 	if (!bytes_read)
 	{
-		get_first_line(fd_to_res(fd, &res_list), line);
+		get_first_line(&(res[fd]), line);
 		return (0);
 	}
-	get_first_line(fd_to_res(fd, &res_list), line);
+	get_first_line(&(res[fd]), line);
 	return (1);
 }
 
@@ -47,64 +47,26 @@ void	get_first_line(char **buffer, char **line)
 	int		i;
 
 	i = 0;
-	while ((*buffer)[i] && (*buffer)[i] != '\n')
-		i++;
+	if (buffer)
+	{
+		while ((*buffer)[i] && (*buffer)[i] != '\n')
+			i++;
+	}
 	res = ft_calloc(i + 1, sizeof(char));
 	if (!res)
 		return ;
-	i = 0;
-	while ((*buffer)[i] && (*buffer)[i] != '\n')
+	if (buffer)
 	{
-		res[i] = (*buffer)[i];
-		i++;
+		i = 0;
+		while ((*buffer)[i] && (*buffer)[i] != '\n')
+		{
+			res[i] = (*buffer)[i];
+			i++;
+		}
+		if ((*buffer)[i] == '\n')
+			i++;
+		*buffer = cut_first_chars(*buffer, i);
 	}
-	if ((*buffer)[i] == '\n')
-		i++;
-	*buffer = cut_first_chars(*buffer, i);
 	free(*line);
 	*line = res;
-}
-
-void	add_new_fd(int fd, t_file **list)
-{
-	t_file *new;
-	t_file *ptr;
-
-	new = ft_calloc(1, sizeof(t_file));
-	if (!new)
-		return ;
-	new->next = NULL;
-	new->fd = fd;
-	new->res = ft_calloc(1, sizeof(char));
-	if (!new->res)
-		return ;
-	if (!(*list))
-	{
-		*list = new;
-		return ;
-	}
-	ptr = *list;
-	while (ptr->next)
-		ptr = ptr->next;
-	ptr->next = new;
-}
-
-char	**fd_to_res(int fd, t_file **list)
-{
-	t_file *ptr;
-
-	if (!(*list))
-	{
-		add_new_fd(fd, list);
-		return (&((*list)->res));
-	}
-	ptr = *list;
-	while (ptr)
-	{
-		if (ptr->fd == fd)
-			return (&(ptr->res));
-		ptr = ptr->next;
-	}
-	add_new_fd(fd, list);
-	return (fd_to_res(fd, list));
 }

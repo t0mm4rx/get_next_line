@@ -6,7 +6,7 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 13:45:14 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/21 13:45:20 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/21 19:31:32 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int		count_bl(char *str)
 	int i;
 	int res;
 
+	if (!str)
+		return (0);
 	i = 0;
 	res = 0;
 	while (str[i])
@@ -48,6 +50,8 @@ int		ft_strlen(char *str)
 	int i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 		i++;
 	return (i);
@@ -63,13 +67,17 @@ void	strappend(char **dest, char *append, unsigned int append_size)
 		return ;
 	i = 0;
 	j = 0;
-	while ((*dest)[i])
-		new[j++] = (*dest)[i++];
+	if (dest && *dest)
+	{
+		while ((*dest)[i])
+			new[j++] = (*dest)[i++];
+	}
 	i = 0;
 	while (i < append_size)
 		new[j++] = append[i++];
 	new[j] = '\0';
-	free(*dest);
+	if (dest)
+		free(*dest);
 	*dest = new;
 }
 

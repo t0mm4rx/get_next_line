@@ -78,4 +78,12 @@ int main()
 	char *line;
 	int status = get_next_line(42, &line);
 	printf("file 42 (status: %d): |%s|\n", status, line);
+
+	puts("\n** Stdin (ctrl+d to stop)");
+	int i = 0;
+	char *line2 = NULL;
+	int status2 = 0;
+	while((status2 = get_next_line(0, &line2)) == 1)
+		printf("(status: %d) %d: |%s|\n", status2, i++, line2);
+
 }

@@ -6,13 +6,14 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 13:45:38 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/21 13:45:57 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/21 19:25:13 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# define MAX_OPENED 4096
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 32
 # endif
