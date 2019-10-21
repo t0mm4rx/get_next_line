@@ -73,4 +73,9 @@ int main()
 
 	puts("\n** No permission");
 	cat_file("no_permission");
+
+	puts("\n** Random file descriptor");
+	char *line;
+	int status = get_next_line(42, &line);
+	printf("file 42 (status: %d): |%s|\n", status, line);
 }

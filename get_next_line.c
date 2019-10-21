@@ -6,7 +6,7 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 13:44:55 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/21 13:45:05 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/21 15:37:42 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		get_next_line(int fd, char **line)
 	}
 	bytes_read = 1;
 	while (count_bl(*fd_to_res(fd, &res_list)) <= 0 &&
-	(bytes_read = read(fd, buffer, BUFFER_SIZE)))
+	(bytes_read = read(fd, buffer, BUFFER_SIZE)) && bytes_read > 0)
 		strappend(fd_to_res(fd, &res_list), buffer, bytes_read);
 	if (bytes_read < 0)
 	{
