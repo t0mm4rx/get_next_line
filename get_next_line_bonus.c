@@ -6,7 +6,7 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 10:34:54 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/21 10:38:40 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/21 11:17:57 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		get_next_line(int fd, char **line)
 {
-	char		buffer[BUFFER_SIZE];
+	char			buffer[BUFFER_SIZE];
 	static t_file	*res_list;
-	int			bytes_read;
+	int				bytes_read;
 
 	if (fd == -1)
 		return (-1);

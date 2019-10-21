@@ -6,7 +6,7 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:38:48 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/19 01:18:17 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/21 11:17:42 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 32
+#  define BUFFER_SIZE 32
 # endif
 
 # include <unistd.h>
