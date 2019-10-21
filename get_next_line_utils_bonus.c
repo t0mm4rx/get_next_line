@@ -6,7 +6,7 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 10:35:09 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/21 10:35:11 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/21 12:20:17 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*cut_first_chars(char *src, unsigned int i)
 	int		j;
 
 	res = ft_calloc(ft_strlen(src) - i + 1, sizeof(char));
-	if (!res)
+	if (!res || !src)
 		return (NULL);
 	j = 0;
 	while (src[i])

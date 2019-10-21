@@ -6,7 +6,7 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 10:34:54 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/21 11:17:57 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/21 13:41:56 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,22 @@ int		get_next_line(int fd, char **line)
 	int				bytes_read;
 
 	if (fd == -1)
+	{
+		*line = NULL;
 		return (-1);
+	}
+	bytes_read = 1;
 	while (count_bl(*fd_to_res(fd, &res_list)) <= 0 &&
 	(bytes_read = read(fd, buffer, BUFFER_SIZE)))
 		strappend(fd_to_res(fd, &res_list), buffer, bytes_read);
 	if (bytes_read < 0)
+	{
+		*line = NULL;
 		return (-1);
+	}
 	if (!bytes_read)
 	{
-		*line = *fd_to_res(fd, &res_list);
+		get_first_line(fd_to_res(fd, &res_list), line);
 		return (0);
 	}
 	get_first_line(fd_to_res(fd, &res_list), line);
@@ -51,7 +58,9 @@ void	get_first_line(char **buffer, char **line)
 		res[i] = (*buffer)[i];
 		i++;
 	}
-	*buffer = cut_first_chars(*buffer, i + 1);
+	if ((*buffer)[i] == '\n')
+		i++;
+	*buffer = cut_first_chars(*buffer, i);
 	free(*line);
 	*line = res;
 }
