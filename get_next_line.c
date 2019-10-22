@@ -18,11 +18,9 @@ int		get_next_line(int fd, char **line)
 	static char		*res[MAX_OPENED];
 	int				bytes_read;
 
+	*line = NULL;
 	if (fd == -1)
-	{
-		*line = NULL;
 		return (-1);
-	}
 	bytes_read = 1;
 	while (count_bl(res[fd]) <= 0 &&
 	(bytes_read = read(fd, buffer, BUFFER_SIZE)) && bytes_read > 0)
@@ -47,7 +45,7 @@ void	get_first_line(char **buffer, char **line)
 	int		i;
 
 	i = 0;
-	if (buffer)
+	if (buffer && *buffer)
 	{
 		while ((*buffer)[i] && (*buffer)[i] != '\n')
 			i++;
@@ -55,7 +53,7 @@ void	get_first_line(char **buffer, char **line)
 	res = ft_calloc(i + 1, sizeof(char));
 	if (!res)
 		return ;
-	if (buffer)
+	if (buffer && *buffer)
 	{
 		i = 0;
 		while ((*buffer)[i] && (*buffer)[i] != '\n')

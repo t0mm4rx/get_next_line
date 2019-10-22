@@ -6,7 +6,7 @@ int main()
 {
 	int fd = open("bible.txt", O_RDONLY);
 	int status = 0;
-	char *line;
+	char *line = NULL;
 	while ((get_next_line(fd, &line)) == 1)
 		printf("%s\n", line);
 
