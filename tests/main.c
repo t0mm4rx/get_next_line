@@ -79,6 +79,9 @@ int main()
 	puts("\n** No permission");
 	cat_file("no_permission");
 
+	puts("\n** Line of one char");
+	cat_file("short_line");
+
 	puts("\n** Random file descriptor");
 	char *line;
 	int status = get_next_line(42, &line);

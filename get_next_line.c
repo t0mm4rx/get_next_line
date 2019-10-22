@@ -6,7 +6,7 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 13:44:55 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/21 19:29:58 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/22 17:35:42 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@ int		get_next_line(int fd, char **line)
 	(bytes_read = read(fd, buffer, BUFFER_SIZE)) && bytes_read > 0)
 		strappend(&(res[fd]), buffer, bytes_read);
 	if (bytes_read < 0)
-	{
-		*line = NULL;
 		return (-1);
-	}
 	if (!bytes_read)
 	{
 		get_first_line(&(res[fd]), line);
@@ -50,8 +47,7 @@ void	get_first_line(char **buffer, char **line)
 		while ((*buffer)[i] && (*buffer)[i] != '\n')
 			i++;
 	}
-	res = ft_calloc(i + 1, sizeof(char));
-	if (!res)
+	if (!(res = ft_calloc(i + 1, sizeof(char))))
 		return ;
 	if (buffer && *buffer)
 	{
