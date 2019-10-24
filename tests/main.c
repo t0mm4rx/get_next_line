@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <libc.h>
+#include <fcntl.h>
 #include "../get_next_line.h"
 
 void read_file(char const *filename)

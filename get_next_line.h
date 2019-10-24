@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 # include <fcntl.h>
 # include <unistd.h>
-# include <libc.h>
+# include <stdlib.h>
 # define MAX_OPEN 4096
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 32
