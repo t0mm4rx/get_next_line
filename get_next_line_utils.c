@@ -6,7 +6,7 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 12:32:57 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/24 16:01:15 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/24 19:12:42 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void			*ft_calloc(unsigned int nmemb, unsigned int size)
 	if (!res)
 		return NULL;
 	i = 0;
-	while (i < nmemb * size)
+	while (i < (int)nmemb * (int)size)
 		((unsigned char*)res)[i++] = '\0';
 	return (res);
 }

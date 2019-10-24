@@ -6,7 +6,7 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 12:35:58 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/24 16:15:53 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/24 19:39:12 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,19 @@ void read_file(char const *filename)
 	fd = open(filename, O_RDONLY);
 	while ((status = get_next_line(fd, &line)) == 1)
 	{
-		printf("%d (%d): |%s|\n", ++i, status, line);
+		//printf("%d (%d): |%s|\n", ++i, status, line);
+		puts(line);
 		free(line);
+		line = NULL;
 	}
 	printf("%d (%d): |%s|\n", ++i, status, line);
 	free(line);
+	line = NULL;
 	close(fd);
 }
 
 int main(int argc, char **argv)
 {
+	(void)argc;
 	read_file(argv[1]);
 }
