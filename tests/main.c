@@ -10,13 +10,9 @@ void cat_file(char const *file)
 	int status;
 	int line_count = 0;
 	while ((status = get_next_line(fd, &line)) == 1)
-	{
 		printf("(status: %d) %d: |%s|\n", status, line_count++, line);
-		free(line);
-	}
-	printf("(status: %d): |%s|\n", status, line);
+	//printf("(status: %d): |%s|\n", status, line);
 	close(fd);
-	free(line);
 }
 
 void cat_files(char **files, int size)
@@ -38,13 +34,15 @@ void cat_files(char **files, int size)
 		while (i < size)
 		{
 			status = get_next_line(fd[i], &line);
-			printf("file %d (status: %d): |%s|\n", fd[i], status, line);
-			free(line);
+			if (status == 1)
+				printf("file %d (status: %d): |%s|\n", fd[i], status, line);
 			i++;
+			line = NULL;
 		}
 		j++;
 	}
 	i = 0;
+	free(line);
 	while (i < size)
 		close(fd[i++]);
 }
@@ -83,10 +81,9 @@ int main()
 	cat_file("short_line");
 
 	puts("\n** Random file descriptor");
-	char *line;
+	char *line = NULL;
 	int status = get_next_line(42, &line);
 	printf("file 42 (status: %d): |%s|\n", status, line);
-	free(line);
 
 	puts("\n** Stdin (ctrl+d to stop)");
 	int i = 0;
@@ -94,5 +91,4 @@ int main()
 	int status2 = 0;
 	while((status2 = get_next_line(0, &line2)) == 1)
 		printf("(status: %d) %d: |%s|\n", status2, i++, line2);
-	free(line2);
 }
