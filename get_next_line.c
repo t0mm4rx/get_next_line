@@ -6,7 +6,7 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 12:33:21 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/24 19:28:29 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/24 20:38:12 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,20 @@ int				get_next_line(int fd, char **line)
 	bytes_read = 42;
 	while (!count_bl(buffers[fd])
 			&& (bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0)
-	{
-		buffer[bytes_read] = '\0';
-		ft_strjoin(&buffers[fd], buffer);
-	}
-	if (bytes_read == 0)
-	{
+		ft_strjoin(&buffers[fd], buffer, bytes_read);
+	if (bytes_read >= 0)
 		*line = first_line(buffers[fd]);
+	if (bytes_read <= 0)
 		free(buffers[fd]);
+	if (bytes_read == 0)
 		return (0);
-	}
 	else if (bytes_read < 0)
 	{
 		*line = NULL;
-		free(buffers[fd]);
 		return (-1);
 	}
-	else
-	{
-		*line = first_line(buffers[fd]);
-		cut(&buffers[fd]);
-		return (1);
-	}
+	cut(&buffers[fd]);
+	return (1);
 }
 
 unsigned int	count_bl(const char *str)

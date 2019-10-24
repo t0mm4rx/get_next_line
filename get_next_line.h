@@ -6,7 +6,7 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 12:33:28 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/24 15:58:37 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/24 20:39:48 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # endif
 
 int				get_next_line(int fd, char **line);
-void			ft_strjoin(char **s1, char const *s2);
+void			ft_strjoin(char **s1, char *s2, int s2_size);
 void			*ft_calloc(unsigned int nmemb, unsigned int size);
 unsigned int	ft_strlen(const char *str);
 char			*first_line(const char *str);

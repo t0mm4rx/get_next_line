@@ -6,13 +6,13 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 12:32:57 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/24 19:12:42 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/10/24 20:39:44 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void			ft_strjoin(char **s1, char const *s2)
+void			ft_strjoin(char **s1, char *s2, int s2_size)
 {
 	char	*res;
 	int		i;
@@ -22,6 +22,7 @@ void			ft_strjoin(char **s1, char const *s2)
 	j = -1;
 	if (!(*s1) || !s2)
 		return ;
+	s2[s2_size] = '\0';
 	res = ft_calloc(sizeof(char), ft_strlen(*s1) + ft_strlen(s2) + 1);
 	if (!res)
 		return ;
@@ -46,7 +47,7 @@ void			*ft_calloc(unsigned int nmemb, unsigned int size)
 	}
 	res = malloc(nmemb * size);
 	if (!res)
-		return NULL;
+		return (NULL);
 	i = 0;
 	while (i < (int)nmemb * (int)size)
 		((unsigned char*)res)[i++] = '\0';
@@ -74,7 +75,7 @@ char			*first_line(char const *str)
 	while (str[i] && str[i] != '\n')
 		i++;
 	if (!(res = ft_calloc(i + 1, sizeof(char))))
-			return (NULL);
+		return (NULL);
 	while (i--)
 		res[i] = str[i];
 	return (res);
