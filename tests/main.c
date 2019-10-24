@@ -24,8 +24,7 @@ void read_file(char const *filename)
 	fd = open(filename, O_RDONLY);
 	while ((status = get_next_line(fd, &line)) == 1)
 	{
-		//printf("%d (%d): |%s|\n", ++i, status, line);
-		puts(line);
+		printf("%d (%d): |%s|\n", ++i, status, line);
 		free(line);
 		line = NULL;
 	}
