@@ -6,7 +6,7 @@
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 12:33:21 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/24 20:38:12 by tmarx            ###   ########.fr       */
+/*   Updated: 2019/11/18 12:17:07 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int				get_next_line(int fd, char **line)
 	char		buffer[BUFFER_SIZE + 1];
 	int			bytes_read;
 
-	if (BUFFER_SIZE < 0 || fd == -1
+	if (BUFFER_SIZE < 0 || fd <= -1
 			|| (!buffers[fd] && !(buffers[fd] = ft_calloc(1, sizeof(char)))))
 		return (-1);
 	bytes_read = 42;

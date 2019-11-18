@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/24 12:33:28 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/24 20:39:48 by tmarx            ###   ########.fr       */
+/*   Created: 2019/11/18 12:29:01 by tmarx             #+#    #+#             */
+/*   Updated: 2019/11/18 12:29:13 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>

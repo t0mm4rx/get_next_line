@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmarx <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/24 12:33:21 by tmarx             #+#    #+#             */
-/*   Updated: 2019/10/24 20:38:12 by tmarx            ###   ########.fr       */
+/*   Created: 2019/11/18 12:29:24 by tmarx             #+#    #+#             */
+/*   Updated: 2019/11/18 12:29:30 by tmarx            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int				get_next_line(int fd, char **line)
 {
@@ -18,7 +18,7 @@ int				get_next_line(int fd, char **line)
 	char		buffer[BUFFER_SIZE + 1];
 	int			bytes_read;
 
-	if (BUFFER_SIZE < 0 || fd == -1
+	if (BUFFER_SIZE < 0 || fd <= -1
 			|| (!buffers[fd] && !(buffers[fd] = ft_calloc(1, sizeof(char)))))
 		return (-1);
 	bytes_read = 42;
